@@ -1,0 +1,31 @@
+#body {
+    background-color: #e6eeff;
+    color: #5c5c8a;
+}
+
+#alink {
+    background-color: #fff2e6;
+    color: #5c5c8a;
+}
+
+#flashing {
+    color: #ff4d94;
+}
+
+img {
+    width: 20px;
+    height: auto;
+    cursor: pointer;
+}
+
+#active {
+    color: #5c5c8a;
+}
+
+
+
+
+
+
+
+
