@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <title>Private Messages</title>
+</head>
+<body id="body">
+  
+    <%- include('./partials/navbar2.ejs') %>
+    <% if (token) { %>
+    <%- include('./partials/loginbar.ejs') %>
+      <% } else { %>
+    <%- include('./partials/logoutbar.ejs') %>
+        <% } %>
+
+
+
+    <div class="container">
+        <p>
+            <% if (response) { %>
+              <div class="alert alert-primary" role="alert">
+                 <%= response %> 
+              </div>
+            <% } else { %> 
+                <h1>Private Messages</h1>
+                <% } %>
+          </p>
+   
+      <% if (data[0]) {%>
+        <% for (let i of data) { %>
+      <ul class="list-group">
+        <li class="list-group-item">
+            <div style="display: flex; justify-content: space-between;">
+                <div style="display: flex; flex-direction: column;"> 
+                    <h5>From: <%=i.from_user%> </h5>
+                    <h5>To: <%=i.to_user%></h5>
+                    <p>
+                        <section>
+                            <%=i.content%>
+                        </section>
+                    </p>
+                    <form action="/sendprivate2" method="POST">
+                        <input type="hidden" name="from_user"  value="<%= i.to_user %>">
+                        <input type="hidden" name="to_user"  value="<%= i.from_user %>">
+                        <input type="hidden" name="response"  value="sent!">
+                        <input type="hidden" name="content"  value="<%= i.content %>">
+                        <input type="text" class="form-control" id="private" name="private">
+                        <button class="btn btn-outline-secondary"
+                        style="--bs-btn-padding-y: .05rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem; width: 50px;">Reply</button>
+                    </form>
+                </div>
+                    <a href="/private/<%=i.id%>">
+                        <img src="images/icons8-delete-67.png" alt="delete">
+                    </a>
+            </div>
+        </li>
+      </ul>
+    <% } %>
+      <% } else { %>
+        <%=response='No messages'%>
+        <%  }  %>
+    </div>
+
+</div>
+</body>
+</html>

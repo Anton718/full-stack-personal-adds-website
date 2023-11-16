@@ -1,9 +1,8 @@
 <div class="alert alert-success" role="alert">
-   LOGGED IN: "<%= user.toUpperCase() %>" go to  <a href="/blog" class="alert-link">Post</a>
-    <form action="/logout">
-        <div class="mb-3">
-            <input type="submit" value="Logout">
-        </div>
-        </form> 
-  </div>
-  
+  You logged in as: <%=user%>
+  <form action="/logout">
+    <div class="mb-3">
+      <input type="submit" value="Logout" />
+    </div>
+  </form>
+</div>

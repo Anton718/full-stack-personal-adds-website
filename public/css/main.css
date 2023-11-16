@@ -1,31 +1,29 @@
 #body {
-    background-color: #e6eeff;
-    color: #5c5c8a;
+  background-color: #edf4fa;
+  color: #5c5c8a;
 }
 
 #alink {
-    background-color: #fff2e6;
-    color: #5c5c8a;
+  background-color: #fff2e6;
+  color: #5c5c8a;
 }
 
 #flashing {
-    color: #ff4d94;
+  color: #ff4d94;
 }
 
 img {
-    width: 20px;
-    height: auto;
-    cursor: pointer;
+  width: 20px;
+  height: auto;
+  cursor: pointer;
 }
 
 #active {
-    color: #5c5c8a;
+  color: #5c5c8a;
 }
 
-
-
-
-
-
-
-
+.profile_image {
+  height: 200px;
+  width: 400px;
+  border: #5c5c8a;
+}
