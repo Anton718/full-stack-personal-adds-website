@@ -1,12 +1,13 @@
 exports.login = async (req, res) => {
+  let name = req.body.name.toLowerCase();
   const savedHash = await db.query("SELECT pass FROM users WHERE name = $1", [
-    req.body.name,
+    name,
   ]);
   const responseUser = {
-    username: req.body.name,
+    username: name,
     password: req.body.pass,
   };
-
+  console.log(responseUser);
   if (savedHash[0]) {
     await bcrypt.compare(
       req.body.pass,
@@ -15,7 +16,7 @@ exports.login = async (req, res) => {
         if (!result) {
           return res.render("signin", {
             active: "signin",
-            resonse: `User ${req.body.name} exists but the password is wrong`,
+            resonse: `User ${name} exists but the password is wrong`,
             token: "",
             user: "",
             yourBio: "",
@@ -40,7 +41,7 @@ exports.login = async (req, res) => {
       active: "signin",
       response: `You are not registered. Go to Signup`,
       token: "",
-      user: req.body.name,
+      user: name,
       yourBio: "",
     });
   }

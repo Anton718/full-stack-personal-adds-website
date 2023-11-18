@@ -6,12 +6,13 @@ exports.signin = async (req, res) => {
     const bio = await db.query("SELECT bio FROM users WHERE name = $1", [
       user.username,
     ]);
+    console.log(bio);
     res.render("signin", {
       active: "signin",
       response: "",
       token: token,
       user: user.username,
-      yourBio: bio.bio,
+      yourBio: bio[0].bio,
     });
   } else {
     res.render("signin", {

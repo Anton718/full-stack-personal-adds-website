@@ -3,9 +3,9 @@ exports.bio = async (req, res) => {
   if (token && req.body.bio !== "") {
     const user = jwt.verify(token, "rwervterbj353jhbdkfhv");
     await db
-      .one("UPDATE users SET bio=$2 WHERE name=$1", [
-        user.username,
+      .one("UPDATE users SET bio = $1 WHERE name = $2", [
         req.body.bio,
+        user.username,
       ])
       .then((data) => {
         console.log("DATA:", data.value);
