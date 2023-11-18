@@ -16,13 +16,12 @@ exports.login = async (req, res) => {
         if (!result) {
           return res.render("signin", {
             active: "signin",
-            resonse: `User ${name} exists but the password is wrong`,
+            response: `User ${name} exists but the password is wrong`,
             token: "",
             user: "",
             yourBio: "",
           });
         } else {
-          response = null;
           const token = jwt.sign(responseUser, "rwervterbj353jhbdkfhv", {
             expiresIn: 10000000,
           });

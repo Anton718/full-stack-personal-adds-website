@@ -46,16 +46,18 @@
                 </a>
               </div>  
             <p class="mb-1"><%= i.content %></p>
-            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-            <button type="button" class="btn btn-outline-secondary"
-              style="--bs-btn-padding-y: .05rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Reply</button>
+            <div style="display: flex; justify-content:end; margin-bottom: 10px;">
               <% if (i.username === user) { %>
                     <a href="/blog/<%=i.id%>">
                       <img src="images/icons8-delete-67.png" alt="delete">
                     </a>
               <% } %>
             </div>
-            <div style="text-align: end;"><span style="color: blueviolet;">0 replies</span></div>
+            <form action="/addcomment" method="POST">
+              <input type="text" class="form-control" id="private" name="comment">
+              <button type="button" class="btn btn-outline-secondary"
+              style="--bs-btn-padding-y: .05rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Reply</button>
+            </form>
           </li>
       <%}%>
       <% } %> 
