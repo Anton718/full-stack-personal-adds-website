@@ -1,9 +1,10 @@
 exports.register = async (req, res) => {
+  let name = req.body.name.toLowerCase();
   const savedHash = await db.query("SELECT pass FROM users WHERE name = $1", [
-    req.body.name,
+    name,
   ]);
   const responseUser = {
-    username: req.body.name,
+    username: name,
     password: req.body.pass,
   };
 
@@ -18,7 +19,7 @@ exports.register = async (req, res) => {
     await bcrypt.hash(req.body.pass, 10, async function (err, hash) {
       if (err) throw err;
       await db.query("INSERT INTO Users(name, pass) VALUES ($1, $2)", [
-        req.body.name.toLowerCase(),
+        name,
         hash,
       ]);
       response = `You signed up`;
@@ -27,15 +28,15 @@ exports.register = async (req, res) => {
       });
       res.cookie("token", token, {
         httpOnly: true,
-        secure: true,
+        secure: false,
         maxAge: 1000000,
         signed: true,
       });
       res.render("signin", {
         active: "signin",
-        response: `You signed up as ${req.body.name.toLowerCase()}`,
+        response: `You signed up as ${name}`,
         token: token,
-        user: req.body.name,
+        user: name,
         yourBio: "",
       });
     });

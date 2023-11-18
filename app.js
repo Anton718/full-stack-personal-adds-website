@@ -1,8 +1,8 @@
 const express = require("express");
 const app = express();
 const cookieParser = require("cookie-parser");
-const port = process.env.port || 4000;
 const moment = require("moment");
+const port = process.env.port || 3000;
 
 global.bodyParser = require("body-parser");
 global.urlencodedParser = bodyParser.urlencoded({ extended: false });

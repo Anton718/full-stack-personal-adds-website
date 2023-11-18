@@ -13,10 +13,9 @@ exports.login = async (req, res) => {
       savedHash[0].pass,
       function (err, result) {
         if (!result) {
-          response = `User ${req.body.name.toLowerCase()} exists but the password is wrong`;
           return res.render("signin", {
             active: "signin",
-            resonse: response,
+            resonse: `User ${req.body.name} exists but the password is wrong`,
             token: "",
             user: "",
             yourBio: "",
@@ -28,7 +27,7 @@ exports.login = async (req, res) => {
           });
           res.cookie("token", token, {
             httpOnly: true,
-            secure: true,
+            secure: false,
             maxAge: 10000000,
             signed: true,
           });
@@ -37,10 +36,9 @@ exports.login = async (req, res) => {
       }
     );
   } else {
-    response = `You are not registered. Go to Signup`;
     res.render("signin", {
       active: "signin",
-      response: response,
+      response: `You are not registered. Go to Signup`,
       token: "",
       user: req.body.name,
       yourBio: "",
