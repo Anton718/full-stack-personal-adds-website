@@ -11,7 +11,6 @@ exports.getposts = async (req, res) => {
     .query("SELECT * FROM posts ORDER BY id DESC")
     .then((result) => (posts = result))
     .catch((error) => console.log(error));
-  console.log(posts);
   let replies;
   await db
     .query("SELECT * FROM comments")
