@@ -17,6 +17,7 @@ const blogRoutes = require("./src/blog/blog.routes");
 const authRoutes = require("./src/auth/auth.routes");
 const contactRoute = require("./src/contact/contact.routes");
 const messagesRoutes = require("./src/messages/private.routes");
+const commentsRoutes = require("./src/comments/comments.routes");
 
 console.log(moment().format("MMMM Do YYYY, h:mm:ss a"));
 
@@ -29,7 +30,7 @@ app.use(messagesRoutes);
 app.use(blogRoutes);
 app.use(authRoutes);
 app.use(contactRoute);
-app.use(contactRoute);
+app.use(commentsRoutes);
 app.use(express.static(path.join(__dirname, "/public")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

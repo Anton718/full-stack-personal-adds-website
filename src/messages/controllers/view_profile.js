@@ -23,5 +23,7 @@ exports.view_profile = async (req, res) => {
         data: "",
       });
     }
+  } else {
+    res.redirect("/blog");
   }
 };

@@ -53,14 +53,32 @@
                     </a>
               <% } %>
             </div>
+            <% for (let j of replies) { %>
+              <% if (i.id === j.parent_id) {%>
+            <div id="reply"> 
+              <p>###</p>
+                <p class="fs-6 fw-lighter">REPLY TO: <%=i.username%> FROM: <%=j.username%></p>
+                <span class="d-inline-block text-truncate fw-lighter" style="max-width: 600px;">
+                  ORIGINAL MESSAGE: <%= i.content%>
+                </span>
+                <p class="fw-lighter">REPLY: <%= j.text%></p>
+            </div>
+          <% } %>
+          <% } %>
+
             <form action="/addcomment" method="POST">
-              <input type="text" class="form-control" id="private" name="comment">
-              <button type="button" class="btn btn-outline-secondary"
+              <input type="hidden" name="parent_title" value="<%= i.title %>">
+              <input type="hidden" name="parent_content" value="<%= i.content %>">
+              <input type="hidden" name="parent_username" value="<%= i.username %>">
+              <input type="hidden" name="parent_post_id" value="<%= i.id %>">
+              <input type="hidden" name="child_username" value="<%= user.username %>">
+              <input type="text" class="form-control" id="private" name="child_comment">
+              <button type="submit" class="btn btn-outline-secondary"
               style="--bs-btn-padding-y: .05rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Reply</button>
             </form>
           </li>
       <%}%>
-      <% } %> 
+      <%}%> 
         </ul>
     </div>
 </body>
