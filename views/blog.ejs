@@ -55,15 +55,22 @@
             </div>
             <% for (let j of replies) { %>
               <% if (i.id === j.parent_id) {%>
-            <div id="reply"> 
-              <p class="fs-6 fw-lighter">###</p>
-                <p class="fs-6 fw-lighter">&nbsp;&nbsp;REPLY TO: <%=i.username%> FROM: <%=j.username%></p>
-                <span class="d-inline-block text-truncate fw-lighter" style="max-width: 300px;">&nbsp;&nbsp;ORIGINAL MESSAGE: <%= i.content%></span>
-                <p class="fw-lighter">&nbsp;&nbsp;REPLY: <%= j.text%></p>
-            </div>
+            <div id="reply" > 
+              <p class="fs-6 fw-lighter">
+                ###
+              </p>
+                <p class="fs-6 fw-lighter">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FROM:
+                  <a style="text-decoration: none;">
+                    <%=j.username%>
+                  </a>
+                </p>
+              <p id="<%=j.id%>" class="fw-lighter">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= j.text%>
+              </p>
           <% } %>
           <% } %>
-
+            <br>
             <form action="/addcomment" method="POST">
               <input type="hidden" name="parent_title" value="<%= i.title %>">
               <input type="hidden" name="parent_content" value="<%= i.content %>">

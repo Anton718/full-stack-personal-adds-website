@@ -16,25 +16,26 @@
         <% } %>
     <div class="container">
         <% if (data[0]) {%>
-        <h1>User Profile</h1>
-        <div class="card" style="width: 18rem">
-          <div class="card-body">
-            <h5 class="card-title"><%=data[0].name%></h5>
-            <p class="card-text"><%=data[0].bio%></p>
+          <h1>User Profile</h1>
+          <div class="card" style="width: 18rem">
+            <div class="card-body">
+              <h5 class="card-title"><%=data[0].name%></h5>
+              <p class="card-text"><%=data[0].bio%></p>
+          <p>
+              <form action="/sendprivate" method="POST">
+                  <div class="mb-3">
+                      <input type="hidden" name="to_user"  value="<%= data[0].name %>">
+                      <input type="hidden" name="bio"  value="<%= data[0].bio %>">
+                      <label for="private" class="form-label">Send them a private message:</label>
+                      <input style="width: 228px;" type="text" class="form-control" id="private" name="private">
+                      <input style="margin-top: 5px;" type="submit" value="send">
+                    </div>
+              </form>
+            </p>
           </div>
         </div>
-        <p>
-            <form action="/sendprivate" method="POST">
-                <div class="mb-3">
-                    <input type="hidden" name="to_user"  value="<%= data[0].name %>">
-                    <input type="hidden" name="bio"  value="<%= data[0].bio %>">
-                    <label for="private" class="form-label">Send them a message:</label>
-                    <input type="text" class="form-control" id="private" name="private">
-                    <input style="margin-top: 5px;" type="submit" value="send">
-                  </div>
-            </form>
-          </p>
-        <%}%>
+        <%} %>
+      
         <p>
             <% if (response) { %>
             <div class="alert alert-primary" role="alert">

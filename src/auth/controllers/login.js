@@ -7,7 +7,6 @@ exports.login = async (req, res) => {
     username: name,
     password: req.body.pass,
   };
-  console.log(responseUser);
   if (savedHash[0]) {
     await bcrypt.compare(
       req.body.pass,

@@ -10,12 +10,12 @@ exports.getposts = async (req, res) => {
   await db
     .query("SELECT * FROM posts ORDER BY id DESC")
     .then((result) => (posts = result))
-    .catch((error) => console.log(error));
+    .catch((error) => error);
   let replies;
   await db
     .query("SELECT * FROM comments")
     .then((result) => (replies = result))
-    .catch((error) => console.log(error));
+    .catch((error) => error);
   const token = req.signedCookies.token;
   if (token) {
     const user = jwt.verify(token, "rwervterbj353jhbdkfhv");

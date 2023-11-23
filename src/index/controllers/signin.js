@@ -2,11 +2,9 @@ exports.signin = async (req, res) => {
   const token = req.signedCookies.token;
   if (token) {
     const user = jwt.verify(token, "rwervterbj353jhbdkfhv");
-    console.log(user);
     const bio = await db.query("SELECT bio FROM users WHERE name = $1", [
       user.username,
     ]);
-    console.log(bio);
     res.render("signin", {
       active: "signin",
       response: "",

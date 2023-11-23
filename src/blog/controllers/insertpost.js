@@ -3,24 +3,15 @@ exports.insertposts = async (req, res) => {
     title: req.body.title,
     post: req.body.post,
   };
-  try {
-    const token = req.signedCookies.token;
+  const token = req.signedCookies.token;
+  if (token) {
     const user = jwt.verify(token, "rwervterbj353jhbdkfhv");
-    if (user) {
-      await db
-        .one(
-          "INSERT INTO posts(title, content, username) VALUES ($1, $2, $3)",
-          [req.body.title, req.body.post, user.username]
-        )
-        .then((data) => {
-          console.log("DATA:", data.value);
-        })
-        .catch((error) => {
-          console.log("ERROR:", error);
-        });
-      res.redirect("blog");
-    }
-  } catch {
+    await db.query(
+      "INSERT INTO posts(title, content, username) VALUES ($1, $2, $3)",
+      [req.body.title, req.body.post, user.username]
+    );
+    res.redirect("blog");
+  } else {
     response = "You need to be logged in to post";
     return res.render("blog", {
       active: "blog",
