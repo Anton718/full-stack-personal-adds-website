@@ -5,6 +5,7 @@ exports.sendPrivMessage2 = async (req, res) => {
     const data = await db.query("SELECT * FROM private WHERE to_user = $1", [
       user.username,
     ]);
+
     if (req.body.private) {
       await db.query(
         "INSERT INTO private(to_user, from_user, content) VALUES ($1, $2, $3)",

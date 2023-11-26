@@ -1,8 +1,18 @@
-<div class="alert alert-success" role="alert">
-  You logged in as: <%=user%>
-  <form action="/logout">
-    <div class="mb-3">
-      <input type="submit" value="Logout" />
-    </div>
-  </form>
+<div
+  class="alert alert-success"
+  role="alert"
+  style="display: flex; justify-content: space-between"
+>
+  <div>
+    You logged in as: <%=user%>
+    <form action="/logout">
+      <div class="mb-3">
+        <input type="submit" value="Logout" />
+      </div>
+    </form>
+  </div>
+  <div style="color: brown">
+    <%try { %> <%if (count) {%> You have <%= count%> private messages<%}}
+    catch(e) { console.log(e)}%>
+  </div>
 </div>
