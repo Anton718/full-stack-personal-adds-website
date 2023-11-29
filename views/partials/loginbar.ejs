@@ -12,7 +12,8 @@
     </form>
   </div>
   <div style="color: brown">
-    <%try { %> <%if (count) {%> You have <%= count%> private messages<%}}
-    catch(e) { console.log(e)}%>
+    <%try { %> <%if (count[0]) {%>
+    <a href="/private"> You have <%= count%> private messages</a>
+    <%}} catch { null; }%>
   </div>
 </div>

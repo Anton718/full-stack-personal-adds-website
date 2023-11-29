@@ -2,8 +2,27 @@
 <h1>PROFILE</h1>
 <div class="card" style="width: 18rem">
   <div class="card-body">
-    <h5 class="card-title"><%=user%></h5>
-    <p class="card-text"><%=yourBio%></p>
+    <div>
+      <div  style="border: 1px solid black; border-radius: 5px; margin-bottom: 2px;">
+            <img  class="card-img-top"
+            <%try {%>
+              <% if (!image) {%>
+              src="images/profile-icon-9.png" alt="user photo"
+              <% } else {%>
+              src="<%=image%>" alt="user photo"
+                <%}%>
+                <%} catch {null;}%>
+            >
+      </div>
+      <form action="/addimage" method="POST" enctype="multipart/form-data">
+        <input type="file" name="image" id="image" style="width: 200px; margin-bottom: 2px;" >
+        <input type="submit" value="Upload">
+      </form>
+    </div>
+    <p>
+      <h4 class="card-title">Name: <%=user%></h4>
+    </p>
+    <p class="card-text">About: <%=yourBio%></p>
       <p>
         <form action="/addbio" method="POST">
           <textarea name="bio"  cols="20" rows="2" placeholder="About yourself"></textarea>
