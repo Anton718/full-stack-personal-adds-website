@@ -15,6 +15,7 @@
     <%- include('./partials/logoutbar.ejs') %>
         <% } %>
     <div class="container">
+     <% if (data.name) { %>
 <div class="card" style="width: 18rem">
   <div class="card-body">
     <div>
@@ -36,7 +37,10 @@
       </form>
     </p>
   </div>
-</div>      
+</div>    
+     <% } else { %>
+      <div></div>
+      <% } %>  
         <p>
             <% if (response) { %>
             <div class="alert alert-primary" role="alert">
