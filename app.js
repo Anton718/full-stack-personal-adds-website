@@ -21,9 +21,6 @@ const messagesRoutes = require("./src/messages/private.routes");
 const commentsRoutes = require("./src/comments/comments.routes");
 const fileUpload = require("express-fileupload");
 
-console.log(moment().format("MMMM Do YYYY, h:mm:ss a"));
-
-// app.set("urlencodedParser", bodyParser.urlencoded({ extended: false }));
 app.set("view engine", "ejs");
 
 app.use(cookieParser("rwervterbj353jhbdkfhv"));
@@ -42,5 +39,5 @@ app.use((req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`App listening on port ${port}`);
+  console.log(moment().format("MMMM Do YYYY, h:mm:ss a"));
 });

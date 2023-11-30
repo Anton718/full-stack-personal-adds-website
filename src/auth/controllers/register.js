@@ -32,13 +32,7 @@ exports.register = async (req, res) => {
         maxAge: 1000000,
         signed: true,
       });
-      res.render("signin", {
-        active: "signin",
-        response: `You signed up as ${name}`,
-        token: token,
-        user: name,
-        yourBio: "",
-      });
+      res.redirect("signin");
     });
   }
 };
