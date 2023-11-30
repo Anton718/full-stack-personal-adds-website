@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="../css/main.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <title>User Profile</title>
 </head>
@@ -15,6 +15,7 @@
     <%- include('./partials/logoutbar.ejs') %>
         <% } %>
     <div class="container">
+      <h1>User Profile</h1>
      <% if (data.name) { %>
 <div class="card" style="width: 18rem">
   <div class="card-body">
@@ -23,9 +24,8 @@
             <img  class="card-img-top" src='../<%=data.image%>' alt="user photo">
       </div>
     </div>
-    <h3><%=data.name%></h3>
+    <h5>Username: <%=data.name%></h5>
     <p class="card-text">About: <%=data.bio%></p>
-    <p>
       <form action="/sendprivate" method="POST">
           <div class="mb-3">
               <input type="hidden" name="to_user"  value="<%= data.name %>">
@@ -35,7 +35,6 @@
               <input style="margin-top: 5px;" type="submit" value="send">
             </div>
       </form>
-    </p>
   </div>
 </div>    
      <% } else { %>
@@ -49,6 +48,5 @@
             <% } %>
         </p>
     </div>
-</div>
 </body>
 </html>
