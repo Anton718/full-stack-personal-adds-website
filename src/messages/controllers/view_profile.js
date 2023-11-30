@@ -3,7 +3,7 @@ exports.view_profile = async (req, res) => {
   if (token) {
     const user = jwt.verify(token, "rwervterbj353jhbdkfhv");
     const data = await db.query(
-      "SELECT name, bio FROM users WHERE name=(SELECT username FROM posts WHERE id=$1)",
+      "SELECT * FROM users WHERE name=(SELECT username FROM posts WHERE id=$1)",
       [req.params.id]
     );
     if (data[0]) {
@@ -12,7 +12,7 @@ exports.view_profile = async (req, res) => {
         token: token,
         response: "",
         user: user.username,
-        data: data,
+        data: data[0],
       });
     } else {
       res.render("user_profile", {

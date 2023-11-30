@@ -4,15 +4,7 @@
   <div class="card-body">
     <div>
       <div  style="border: 1px solid black; border-radius: 5px; margin-bottom: 2px;">
-            <img  class="card-img-top"
-            <%try {%>
-              <% if (!image) {%>
-              src="images/profile-icon-9.png" alt="user photo"
-              <% } else {%>
-              src="<%=image%>" alt="user photo"
-                <%}%>
-                <%} catch {null;}%>
-            >
+            <img  class="card-img-top" src="<%=image%>" alt="user photo">
       </div>
       <form action="/addimage" method="POST" enctype="multipart/form-data">
         <input type="file" name="image" id="image" style="width: 200px; margin-bottom: 2px;" >
@@ -25,7 +17,7 @@
     <p class="card-text">About: <%=yourBio%></p>
       <p>
         <form action="/addbio" method="POST">
-          <textarea name="bio"  cols="20" rows="2" placeholder="About yourself"></textarea>
+          <textarea name="bio"  cols="20" rows="2" placeholder="Update bio"></textarea>
           <input type="submit" value="Update" />
         </form>
       </p>
