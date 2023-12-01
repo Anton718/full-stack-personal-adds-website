@@ -17,13 +17,9 @@
     <div class="container">
     <h1>Post here:</h1>
     <form action="/post" method="POST">
-      <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">Title:</label>
-          <input name="title" type="text" class="form-control" id="exampleFormControlInput1" required />
-        </div>
         <div class="mb-3">
-          <label for="exampleFormControlTextarea1" class="form-label">Text:</label>
-          <textarea name="post" class="form-control" id="exampleFormControlTextarea1" rows="5" > </textarea>
+          <label for="text1" class="form-label">Text:</label>
+          <textarea name="post" class="form-control" id="tex1" rows="5" required></textarea>
         </div>
       <div class="mb-3">
           <input type="submit" value="Post">
@@ -39,22 +35,21 @@
         <% if (posts) { %>
       <% for (let i of posts) { %>
             <li id="alink"  class="list-group-item list-group-item-action" aria-current="true">
-              <div style="display: flex; justify-content: flex-end;">
-                <div style="display: flex; flex-direction: column;">
-                  <a style="text-decoration: none;" href="/user_profile/<%=i.id%>">
-                    <small style="color: blueviolet;"><%= i.username %></small>
-                  </a>
-                    <img src="<%=i.image%>" class="img-fluid img-thumbnail" style="width:80px;height:80px;" alt="user_photo">
-                </div>
-              </div>
-              <div style="display: flex; flex-direction:column; margin-top: 10px;"> 
-                <%=i.username.toUpperCase()%> POSTED:
-                <h5 style="margin-top: 10px;" class="mb-1"><%= i.title %></h5>
-                <p style="margin-top: 10px;">
-                  >> <%= i.content%> <<
+              <div style="display: flex; justify-content: space-between;">
+                <p class="fs-6 fw-lighter">
+                  <%=i.username.toUpperCase()%> POSTED:
                 </p>
+                  <a style="text-decoration: none;" href="/user_profile/<%=i.id%>">
+                    <div style="display: flex; flex-direction: column;">
+                      <small style="color: blueviolet;"><%= i.username %></small>
+                      <img src="<%=i.image%>" class="img-fluid img-thumbnail" style="width:80px;height:80px;" alt="user_photo">
+                    </div>
+                  </a>
               </div>
-            <div style="display: flex; justify-content:end; margin-bottom: 10px;">
+                <p>
+                  <%= i.content%>
+                </p>
+            <div style="display: flex; justify-content:end;">
               <% if (i.username === user) { %>
                     <a href="/blog/<%=i.id%>">
                       <img src="images/Icons8_flat_delete_generic.svg" alt="delete">
@@ -63,17 +58,18 @@
             </div>
             <% for (let j of replies) { %>
               <% if (i.id === j.parent_id) {%>
-              <p class="fs-6 fw-lighter">#######################</p>
                 <div class="fs-6 fw-lighter" style="display: flex; flex-direction: column;"> 
-                  <a style="text-decoration: none;">
-                    <%=j.username%>
+                  <a style="text-decoration: none;color: blueviolet;" href="/user_profile/<%=j.id%>">
+                    <div style="display: flex; flex-direction: column;">
+                      <%=j.username%>
+                      <img src="<%=j.image%>" class="img-fluid img-thumbnail" style="width:80px;height:80px;" alt="user_photo">
+                    </div>
                   </a>
-                  <img src="<%=j.image%>" class="img-fluid img-thumbnail" style="width:80px;height:80px;" alt="user_photo">
                 </div>
               <div id="<%=j.id%>" class="fw-lighter" style="display: flex; flex-direction:column; color: green; margin-top: 10px;">
                 <%=j.username.toUpperCase()%> REPLIED:
                 <p style="margin-top: 10px;">
-                 >> <%= j.text%> <<
+                 >> <%= j.text%>
                 </p>
               </div>
           <% } %>
