@@ -4,7 +4,6 @@ exports.getposts = async (req, res) => {
     .query("SELECT * FROM users, comments WHERE users.name = comments.username")
     .then((result) => (replies = result))
     .catch((error) => error);
-  console.log(replies);
   let posts;
   await db
     .query(
