@@ -16,7 +16,7 @@
         <% } %>
     <div class="container">
       <h1>User Profile</h1>
-     <% if (data.name) { %>
+     <% if (data) { %>
 <div class="card" style="width: 18rem">
   <div class="card-body">
     <div>
@@ -37,7 +37,28 @@
       </form>
   </div>
 </div>    
-     <% } else { %>
+     <% } else if (data2) { %>
+      <div class="card" style="width: 18rem">
+        <div class="card-body">
+          <div>
+            <div  style="border: 1px solid black; border-radius: 5px; margin-bottom: 2px;">
+                  <img  class="card-img-top" src='../<%=data2.image%>' alt="user photo">
+            </div>
+          </div>
+          <h5>Username: <%=data2.name%></h5>
+          <p class="card-text">About: <%=data2.bio%></p>
+            <form action="/sendprivate" method="POST">
+                <div class="mb-3">
+                    <input type="hidden" name="to_user"  value="<%= data2.name %>">
+                    <input type="hidden" name="bio"  value="<%= data2.bio %>">
+                    <label for="private" class="form-label">Send them a private message:</label>
+                    <input style="width: 228px;" type="text" class="form-control" id="private" name="private">
+                    <input style="margin-top: 5px;" type="submit" value="send">
+                  </div>
+            </form>
+        </div>
+      </div>    
+     <%  } else { %>
       <div></div>
       <% } %>  
         <p>
