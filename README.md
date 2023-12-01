@@ -7,4 +7,4 @@ It has login/register option, private messages from user to user, viewing user's
 ![Alt text](public/images/photo_2023-11-30_12-53-29.jpg)
 ![Alt text](public/images/photo_2023-11-23_17-20-20.jpg)
 ![Alt text](public/images/photo_2023-11-23_17-20-18.jpg)
-![Alt text](public/images/photo_2023-11-30_19-28-52.jpg)
+![Alt text](public/images/photo_2023-11-30_19-46-15.jpg)
