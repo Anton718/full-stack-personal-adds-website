@@ -8,16 +8,12 @@
     <title>Home</title>
 </head>
 <body id="body">
-  
     <%- include('./partials/navbar2.ejs') %>
     <% if (token) { %>
     <%- include('./partials/loginbar.ejs') %>
       <% } else { %>
     <%- include('./partials/logoutbar.ejs') %>
         <% } %>
-
-
-
     <div class="container">
     <% if (!token) { %>
       <h1>Home</h1>
@@ -46,7 +42,6 @@
           </div>
        <% } %>
       </p>
-
       </div>
 </div>
 </body>

@@ -1,7 +1,6 @@
 const express = require("express");
 const app = express();
 const cookieParser = require("cookie-parser");
-const moment = require("moment");
 const port = process.env.port || 3000;
 
 global.bodyParser = require("body-parser");
@@ -35,9 +34,7 @@ app.use(express.json());
 app.use(fileUpload());
 app.use(express.urlencoded({ extended: false }));
 app.use((req, res) => {
-  res.status(404).send("Sorry can't find that!");
+  res.status(404).send("404 Page does not exist");
 });
 
-app.listen(port, () => {
-  console.log(moment().format("MMMM Do YYYY, h:mm:ss a"));
-});
+app.listen(port, () => {});

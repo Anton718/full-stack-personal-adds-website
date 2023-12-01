@@ -6,35 +6,38 @@ exports.getposts = async (req, res) => {
     parent_post_id: req.body.parent_post_id,
     child_comment_content: req.body.child_comment,
   };
-  let posts;
-  await db
-    .query("SELECT * FROM posts ORDER BY id DESC")
-    .then((result) => (posts = result))
-    .catch((error) => error);
   let replies;
   await db
-    .query("SELECT * FROM comments")
+    .query("SELECT * FROM users, comments WHERE users.name = comments.username")
     .then((result) => (replies = result))
+    .catch((error) => error);
+  console.log(replies);
+  let posts;
+  await db
+    .query(
+      "SELECT * FROM users, posts WHERE users.name = posts.username ORDER BY posts.id DESC"
+    )
+    .then((result) => (posts = result))
     .catch((error) => error);
   const token = req.signedCookies.token;
   if (token) {
     const user = jwt.verify(token, "rwervterbj353jhbdkfhv");
     return res.render("blog", {
       active: "blog",
-      posts: posts,
       replies: replies,
       response: "",
       token: token,
       user: user.username,
+      posts: posts,
     });
   } else {
     res.render("blog", {
       active: "blog",
-      posts: posts,
       replies: replies,
       response: "",
       token: "",
       user: "",
+      posts: posts,
     });
   }
 };

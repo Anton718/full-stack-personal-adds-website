@@ -8,16 +8,12 @@
     <title>Private Messages</title>
 </head>
 <body id="body">
-  
     <%- include('./partials/navbar2.ejs') %>
     <% if (token) { %>
     <%- include('./partials/loginbar.ejs') %>
       <% } else { %>
     <%- include('./partials/logoutbar.ejs') %>
         <% } %>
-
-
-
     <div class="container">
         <p>
             <% if (response) { %>
@@ -28,7 +24,6 @@
                 <h1>Private Messages</h1>
                 <% } %>
           </p>
-   
       <% if (data[0]) {%>
         <% for (let i of data) { %>
       <ul class="list-group">
@@ -63,7 +58,6 @@
         <%=response='No messages'%>
         <%  }  %>
     </div>
-
 </div>
 </body>
 </html>
