@@ -1,97 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="css/main.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
     <title>Posts</title>
-</head>
-<body id="body">
-  <%- include('./partials/navbar2.ejs') %>
-  <% if (token) { %>
-  <%- include('./partials/loginbar.ejs') %>
-    <% } else { %>
-  <%- include('./partials/logoutbar.ejs') %>
-      <% } %>
+  </head>
+  <body id="body">
+    <%- include('./partials/navbar2.ejs') %> <% if (token) { %> <%-
+    include('./partials/loginbar.ejs') %> <% } else { %> <%-
+    include('./partials/logoutbar.ejs') %> <% } %>
     <div class="container">
-    <h1>Post here:</h1>
-    <form action="/post" method="POST">
+      <h1>Post here:</h1>
+      <form action="/post" method="POST">
         <div class="mb-3">
           <label for="text1" class="form-label">Text:</label>
-          <textarea name="post" class="form-control" id="tex1" rows="5" required></textarea>
+          <textarea
+            name="post"
+            class="form-control"
+            id="tex1"
+            rows="5"
+            required
+          ></textarea>
         </div>
-      <div class="mb-3">
-          <input type="submit" value="Post">
+        <div class="mb-3">
+          <input type="submit" value="Post" />
+        </div>
+      </form>
+      <% if (response) { %>
+      <div class="alert alert-danger" role="alert">
+        <a href="/" class="alert-link">Signin</a> <%= response %>
       </div>
-  </form>
-  <% if (response) { %>
-    <div class="alert alert-danger" role="alert">
-      <a href="/" class="alert-link">Signin</a> <%= response %> 
-    </div>
-  <% } %>
-  <div class="list-group">
-      <ul id="list-group" class="list-group">
-        <% if (posts) { %>
-      <% for (let i of posts) { %>
-            <li id="alink"  class="list-group-item list-group-item-action" aria-current="true">
-              <div style="display: flex; justify-content: space-between;">
-                <p class="fs-6 fw-lighter">
-                  <%=i.username.toUpperCase()%> POSTED:
-                </p>
-                  <a style="text-decoration: none;" href="/user_profile/<%=i.id%>">
-                    <div style="display: flex; flex-direction: column;">
-                      <small style="color: blueviolet;"><%= i.username %></small>
-                      <img src="<%=i.image%>" class="img-fluid img-thumbnail" style="width:80px;height:80px;" alt="user_photo">
-                    </div>
-                  </a>
-              </div>
-                <p>
-                  <%= i.content%>
-                </p>
-            <div style="display: flex; justify-content:end;">
+      <% } %>
+      <div class="list-group">
+        <ul id="list-group" class="list-group">
+          <% if (posts) { %> <% for (let i of posts) { %>
+          <li
+            id="alink"
+            class="list-group-item list-group-item-action"
+            aria-current="true"
+          >
+            <div style="display: flex; justify-content: space-between">
+              <p class="fs-6 fw-lighter">
+                <%=i.username.toUpperCase()%> POSTED:
+              </p>
+              <a style="text-decoration: none" href="/user_profile/<%=i.id%>">
+                <div style="display: flex; flex-direction: column">
+                  <small style="color: blueviolet"><%= i.username %></small>
+                  <img
+                    src="<%=i.image%>"
+                    class="img-fluid img-thumbnail"
+                    style="width: 80px; height: 80px"
+                    alt="user_photo"
+                  />
+                </div>
+              </a>
+            </div>
+            <p><%= i.content%></p>
+            <div style="display: flex; justify-content: end">
               <% if (i.username === user) { %>
-                    <a href="/blog/<%=i.id%>">
-                      <img src="images/Icons8_flat_delete_generic.svg" alt="delete">
-                    </a>
+              <a href="/blog/<%=i.id%>">
+                <img src="images/Icons8_flat_delete_generic.svg" alt="delete" />
+              </a>
               <% } %>
             </div>
-            <% for (let j of replies) { %>
-              <% if (i.id === j.parent_id) {%>
-              <ul class="list-group list-group-flush">
+            <% for (let j of replies) { %> <% if (i.id === j.parent_id) {%>
+            <ul class="list-group list-group-flush">
               <li class="list-group-item">
-                <div class="fs-6 fw-lighter" style="display: flex; justify-content: flex-start;"> 
-                  <a style="text-decoration: none;color: blueviolet;" href="/user_profile/<%=j.id%>">
-                    <div style="display: flex; flex-direction: column;">
+                <div
+                  class="fs-6 fw-lighter"
+                  style="display: flex; justify-content: flex-start"
+                >
+                  <a
+                    style="text-decoration: none; color: blueviolet"
+                    href="/user_profile/<%=j.id%>"
+                  >
+                    <div style="display: flex; flex-direction: column">
                       <%=j.username%>
-                      <img src="<%=j.image%>" class="img-fluid img-thumbnail" style="width:80px;height:80px;" alt="user_photo">
+                      <img
+                        src="<%=j.image%>"
+                        class="img-fluid img-thumbnail"
+                        style="width: 80px; height: 80px"
+                        alt="user_photo"
+                      />
                     </div>
-                  </a> 
+                  </a>
                 </div>
-              <div id="<%=j.id%>" class="fw-lighter" style="display: flex; flex-direction:column; color: green; margin-top: 10px;">
-                <%=j.username.toUpperCase()%> REPLIED:
-                <p style="margin-top: 10px;">
-                    >> <%= j.text%>
-                </p>
-              </div>
-            </li>
+                <div
+                  id="<%=j.id%>"
+                  class="fw-lighter"
+                  style="
+                    display: flex;
+                    flex-direction: column;
+                    color: green;
+                    margin-top: 10px;
+                  "
+                >
+                  <%=j.username.toUpperCase()%> REPLIED:
+                  <p style="margin-top: 10px">
+                    <a href="/comment/<%=j.id%>" style="text-decoration: none">
+                      >> <%= j.text%>
+                    </a>
+                  </p>
+                </div>
+              </li>
             </ul>
-          <% } %>
-          <% } %>
-            <br>
+            <% } %> <% } %>
+            <br />
             <form action="/addcomment" method="POST">
-              <input type="hidden" name="parent_title" value="<%= i.title %>">
-              <input type="hidden" name="parent_content" value="<%= i.content %>">
-              <input type="hidden" name="parent_username" value="<%= i.username %>">
-              <input type="hidden" name="parent_post_id" value="<%= i.id %>">
-              <input type="text" class="form-control" id="private" name="child_comment">
-              <button type="submit" class="btn btn-outline-secondary"
-              style="--bs-btn-padding-y: .05rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Reply</button>
+              <input type="hidden" name="parent_title" value="<%= i.title %>" />
+              <input
+                type="hidden"
+                name="parent_content"
+                value="<%= i.content %>"
+              />
+              <input
+                type="hidden"
+                name="parent_username"
+                value="<%= i.username %>"
+              />
+              <input type="hidden" name="parent_post_id" value="<%= i.id %>" />
+              <input
+                type="text"
+                class="form-control"
+                id="private"
+                name="child_comment"
+              />
+              <button
+                type="submit"
+                class="btn btn-outline-secondary"
+                style="
+                  --bs-btn-padding-y: 0.05rem;
+                  --bs-btn-padding-x: 0.5rem;
+                  --bs-btn-font-size: 0.75rem;
+                "
+              >
+                Reply
+              </button>
             </form>
           </li>
-      <%}%>
-      <%}%> 
+          <%}%> <%}%>
         </ul>
+      </div>
     </div>
-</body>
+  </body>
 </html>

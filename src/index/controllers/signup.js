@@ -7,7 +7,6 @@ exports.signup = async (req, res) => {
       active: "signup",
       response: "Register a new user here",
       token: "",
-      user: "",
     });
   }
 };

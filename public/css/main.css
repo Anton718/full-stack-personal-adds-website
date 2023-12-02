@@ -26,3 +26,13 @@ img {
   width: 400px;
   border: #5c5c8a;
 }
+
+@media (max-width: 446px) {
+  #responsive {
+    flex-direction: column;
+  }
+  #news {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+}

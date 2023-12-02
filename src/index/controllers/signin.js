@@ -12,6 +12,11 @@ exports.signin = async (req, res) => {
       "SELECT COUNT(*) FROM private WHERE to_user = $1",
       [user.username]
     );
+    const total_users = await db.query("SELECT COUNT(id) FROM users");
+    const most_recent = await db.query(
+      "SELECT name FROM users where id = (SELECT MAX(id) FROM users)"
+    );
+    const now = new Date().toLocaleTimeString();
     res.render("signin", {
       active: "signin",
       response: "",
@@ -20,14 +25,17 @@ exports.signin = async (req, res) => {
       yourBio: bio[0].bio,
       count: count[0].count,
       image: userImage[0].image,
+      stats: {
+        total: total_users[0].count,
+        recent: most_recent[0].name,
+        now: now,
+      },
     });
   } else {
     res.render("signin", {
       active: "signin",
       response: "Sign in to post and send messages",
       token: "",
-      user: "",
-      yourBio: "",
     });
   }
 };

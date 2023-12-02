@@ -22,7 +22,7 @@
               <div class="mb-3">
                   <label for="user" class="form-label">Username:</label>
                   <input name="name" type="text" class="form-control" id="user" style="text-transform: lowercase;" required/>
-                </div>
+              </div>
                 <div class="mb-3">
                   <label for="pass" class="form-label">Password:</label>
                   <input type="password" name="pass" class="form-control" id="pass" style="text-transform: lowercase;" required/>
@@ -33,7 +33,14 @@
           </form>
       </div>
     <% } else if (token) { %>
-      <%- include('./partials/profile.ejs') %>
+      <div id="responsive" style="display: flex; gap: 10px;">
+        <div>
+          <%- include('./partials/profile.ejs') %>
+        </div>
+        <div>
+          <%- include('./partials/stats.ejs') %>
+        </div>
+      </div>
       <% } %>
       <p>
         <% if (response) { %>
@@ -43,6 +50,5 @@
        <% } %>
       </p>
       </div>
-</div>
 </body>
 </html>
