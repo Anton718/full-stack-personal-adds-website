@@ -1,5 +1,5 @@
 {
-  "name": "sample-static-node-express-web-application",
+  "name": "social-network",
   "version": "2.0.0",
   "description": "practising Express framework",
   "main": "app.js",

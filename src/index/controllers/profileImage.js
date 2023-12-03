@@ -13,6 +13,6 @@ exports.addImage = async (req, res) => {
         user.username,
       ]);
     }
-    return res.redirect("signin");
+    res.redirect("signin");
   }
 };

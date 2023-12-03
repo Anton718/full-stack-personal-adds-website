@@ -104,17 +104,16 @@
                 >
                   <%=j.username.toUpperCase()%> REPLIED:
                   <p style="margin-top: 10px">
-                    <a href="/comment/<%=j.id%>" style="text-decoration: none">
+                    <a href="#" style="text-decoration: none">
                       >> <%= j.text%>
                     </a>
                   </p>
                 </div>
               </li>
             </ul>
-            <% } %> <% } %>
+            <% } } %>
             <br />
             <form action="/addcomment" method="POST">
-              <input type="hidden" name="parent_title" value="<%= i.title %>" />
               <input
                 type="hidden"
                 name="parent_content"
@@ -145,7 +144,7 @@
               </button>
             </form>
           </li>
-          <%}%> <%}%>
+          <%}}%>
         </ul>
       </div>
     </div>
