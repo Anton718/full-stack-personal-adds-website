@@ -27,8 +27,8 @@ img {
   border: #5c5c8a;
 }
 
-@media (max-width: 446px) {
-  #responsive {
+@media (max-width: 860px) {
+  .responsive {
     flex-direction: column;
   }
   #news {

@@ -1,0 +1,22 @@
+
+
+<% if (!userData) {%>
+<div></div>
+<%} else {%>
+<div> 
+    <h1>USER PROFILE</h1>
+    <div class="card" style="width: 18rem">
+    <div class="card-body">
+        <div>
+        <div  style="margin-bottom: 2px;">
+                <img  class="card-img-top" src="<%= userData.image%>" alt="user photo">
+        </div>
+        </div>
+        <p>
+        <h4 class="card-title">Name: <%= userData.name%></h4>
+        </p>
+        <p class="card-text">About: <%= userData.bio%></p>
+    </div>
+    </div>
+</div>
+<%}%>

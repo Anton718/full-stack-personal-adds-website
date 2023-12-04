@@ -15,7 +15,6 @@ exports.sendPrivMessage = async (req, res) => {
         "INSERT INTO private(to_user, from_user, content) VALUES ($1, $2, $3)",
         [req.body.to_user, user.username, req.body.private]
       );
-
       res.render("user_profile", {
         active: "",
         token: token,

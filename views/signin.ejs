@@ -33,12 +33,19 @@
           </form>
       </div>
     <% } else if (token) { %>
-      <div id="responsive" style="display: flex; gap: 10px;">
-        <div>
-          <%- include('./partials/profile.ejs') %>
+      <div class="responsive" style="display: flex; justify-content: space-between;">
+        <div class="responsive" style="display: flex; gap: 50px;">
+          <div style="display: flex;flex-direction: column; gap: 20px;">
+            <%- include('./partials/profile.ejs') %>
+            <%- include('./partials/stats.ejs') %>
+          </div>
+          <div style="display: flex;flex-direction: column;flex-wrap: wrap; gap: 50px;">
+            <%- include('./partials/private.ejs') %>
+          </div>
         </div>
-        <div>
-          <%- include('./partials/stats.ejs') %>
+        <div style="display: flex;flex-direction: column; gap: 20px;">
+          <%- include('./partials/userSearch.ejs') %>
+          <%- include('./partials/user_profile.ejs') %>
         </div>
       </div>
       <% } %>

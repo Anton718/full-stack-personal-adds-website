@@ -17,6 +17,14 @@ exports.signin = async (req, res) => {
       "SELECT name FROM users where id = (SELECT MAX(id) FROM users)"
     );
     const now = new Date().toLocaleTimeString();
+    const data = await db.query(
+      "SELECT * FROM private WHERE to_user = $1 ORDER by id DESC",
+      [user.username]
+    );
+    const userData = await db.query("SELECT * FROM users WHERE name = $1", [
+      req.query.userData,
+    ]);
+    
     res.render("signin", {
       active: "signin",
       response: "",
@@ -30,6 +38,8 @@ exports.signin = async (req, res) => {
         recent: most_recent[0].name,
         now: now,
       },
+      data: data,
+      userData: userData[0]
     });
   } else {
     res.render("signin", {

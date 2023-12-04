@@ -1,26 +1,25 @@
-
-<h1>PROFILE</h1>
-<div class="card" style="width: 18rem">
-  <div class="card-body">
-    <div>
-      <div  style="margin-bottom: 2px;">
-            <img  class="card-img-top" src="<%=image%>" alt="user photo">
-      </div>
-      <form action="/addimage" method="POST" enctype="multipart/form-data">
-        <input type="file" name="image" id="image" style="width: 200px; margin-bottom: 2px;" >
-        <input type="submit" value="Upload">
-      </form>
-    </div>
-    <p>
-      <h4 class="card-title">Name: <%=user%></h4>
-    </p>
-    <p class="card-text">About: <%=yourBio%></p>
-      <p>
-        <form action="/addbio" method="POST">
-          <textarea name="bio"  cols="20" rows="2" placeholder="Update bio"></textarea>
-          <input type="submit" value="Update" />
+<div class="overflow-auto">
+  <div class="card" style="width: 18rem">
+    <div class="card-body">
+      <div>
+        <div  style="margin-bottom: 2px;">
+              <img  class="card-img-top" src="<%=image%>" alt="user photo">
+        </div>
+        <form action="/addimage" method="POST" enctype="multipart/form-data">
+          <input type="file" name="image" id="image" style="width: 200px; margin-bottom: 2px;" >
+          <input type="submit" value="Upload">
         </form>
+      </div>
+      <p>
+        <h4 class="card-title">Name: <%=user%></h4>
       </p>
-    <a href="/private" class="btn btn-primary">Private messages</a>
+      <p class="card-text">About: <%=yourBio%></p>
+        <p>
+          <form action="/addbio" method="POST">
+            <textarea name="bio"  cols="20" rows="2" placeholder="Update bio"></textarea>
+            <input type="submit" value="Update" />
+          </form>
+        </p>
+    </div>
   </div>
 </div>
