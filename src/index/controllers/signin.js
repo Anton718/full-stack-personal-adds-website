@@ -8,10 +8,6 @@ exports.signin = async (req, res) => {
     const userImage = await db.query("SELECT image FROM users WHERE name=$1", [
       user.username,
     ]);
-    const count = await db.query(
-      "SELECT COUNT(*) FROM private WHERE to_user = $1",
-      [user.username]
-    );
     const data = await db.query(
       "SELECT * FROM private WHERE to_user = $1 ORDER by id DESC",
       [user.username]
@@ -26,7 +22,6 @@ exports.signin = async (req, res) => {
       token: token,
       user: user.username,
       yourBio: bio[0].bio,
-      count: count[0].count,
       image: userImage[0].image,
       data: data,
       userData: userData[0],
