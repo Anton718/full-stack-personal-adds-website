@@ -1,7 +1,10 @@
 <div>
     <h2>MESSAGES</h2>
+    <div class="card text-bg-light mb-3" style="max-width: 18rem;">
+        <div class="card-body">
       <% if (data[0]) {%>
         <% for (let i of data) { %>
+              
       <ul class="list-group">
         <li class="list-group-item">
             <div style="display: flex; justify-content: space-between;">
@@ -20,7 +23,7 @@
                         <input type="hidden" name="content"  value="<%= i.content %>">
                         <input type="text" class="form-control" id="private" name="private">
                         <button class="btn btn-outline-secondary"
-                        style="--bs-btn-padding-y: .05rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem; width: 50px;">Reply</button>
+                        style="--bs-btn-padding-y: .05rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Reply</button>
                     </form>
                 </div>
                     <a href="/private/<%=i.id%>">
@@ -34,4 +37,5 @@
       <% } else { %>
         <%=response='No messages'%>
         <%  }  %>
+    </div>
 </div>
