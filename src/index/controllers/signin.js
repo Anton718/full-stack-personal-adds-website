@@ -12,11 +12,6 @@ exports.signin = async (req, res) => {
       "SELECT COUNT(*) FROM private WHERE to_user = $1",
       [user.username]
     );
-    const total_users = await db.query("SELECT COUNT(id) FROM users");
-    const most_recent = await db.query(
-      "SELECT name FROM users where id = (SELECT MAX(id) FROM users)"
-    );
-    const now = new Date().toLocaleTimeString();
     const data = await db.query(
       "SELECT * FROM private WHERE to_user = $1 ORDER by id DESC",
       [user.username]
@@ -24,7 +19,7 @@ exports.signin = async (req, res) => {
     const userData = await db.query("SELECT * FROM users WHERE name = $1", [
       req.query.userData,
     ]);
-    
+
     res.render("signin", {
       active: "signin",
       response: "",
@@ -33,13 +28,8 @@ exports.signin = async (req, res) => {
       yourBio: bio[0].bio,
       count: count[0].count,
       image: userImage[0].image,
-      stats: {
-        total: total_users[0].count,
-        recent: most_recent[0].name,
-        now: now,
-      },
       data: data,
-      userData: userData[0]
+      userData: userData[0],
     });
   } else {
     res.render("signin", {
