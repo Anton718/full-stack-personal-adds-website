@@ -4,7 +4,8 @@ This is a small social network built with Express.js, Javascript, PostgreSQL, Ja
 
 It has login/register option, private messages from user to user, viewing user's account info, writing posts, deleting posts, leaving replies to posts.
 
-![Alt text](public/images/photo_2023-11-30_12-53-29.jpg)
-![Alt text](public/images/photo_2023-11-23_17-20-20.jpg)
-![Alt text](public/images/photo_2023-11-23_17-20-18.jpg)
-![Alt text](<public/images/Screen Shot 2023-12-01 at 14.16.27.png>)
+![Alt text](public/images/photo_2023-12-04_09-46-12.jpg)
+
+![Alt text](public/images/photo_2023-12-04_09-46-21.jpg)
+
+![Alt text](public/images/photo_2023-12-04_09-46-16.jpg)
