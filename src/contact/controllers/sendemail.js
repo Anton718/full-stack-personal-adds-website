@@ -1,8 +1,4 @@
 exports.mailer = async (req, res) => {
-  responseForm = {
-    email: req.body.email,
-    text: req.body.textarea,
-  };
   await db.query("INSERT INTO messages(email, text) VALUES ($1, $2)", [
     req.body.email,
     req.body.textarea,
@@ -10,8 +6,15 @@ exports.mailer = async (req, res) => {
   const token = req.signedCookies.token;
   if (token) {
     const user = jwt.verify(token, "rwervterbj353jhbdkfhv");
-    res.render("form", { active: "", token: token, user: user.username });
+    res.render("form", { 
+      active: "", 
+      token: token, 
+      user: user.username 
+    });
   } else {
-    res.render("form", { active: "", token: "", user: "" });
+    res.render("form", { 
+      active: "",
+      token: "", 
+      user: "" });
   }
 };

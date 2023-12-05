@@ -39,7 +39,7 @@ exports.login = async (req, res) => {
       active: "signin",
       response: `You are not registered. Go to Signup`,
       token: "",
-      user: name,
+      user: "",
       yourBio: "",
     });
   }
