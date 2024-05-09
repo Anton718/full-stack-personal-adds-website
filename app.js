@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const cookieParser = require("cookie-parser");
-const port = process.env.port || 3000;
+const port = process.env.port || 8080;
 
 global.bodyParser = require("body-parser");
 global.urlencodedParser = bodyParser.urlencoded({ extended: false });
